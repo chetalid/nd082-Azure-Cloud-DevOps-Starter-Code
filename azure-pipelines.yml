@@ -44,7 +44,8 @@ stages:
         source antenv/bin/activate
         python -m pip install --upgrade pip
         pip install setup
-        pip install -r requirements.txt
+        pwd
+        pip install -r C2-AgileDevelopmentwithAzure/azure_pipelines_exercise/starter_files/requirements.txt
       workingDirectory: $(projectRoot)
       displayName: "Install requirements"
 
