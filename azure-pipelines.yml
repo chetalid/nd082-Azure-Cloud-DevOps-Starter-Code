@@ -25,7 +25,7 @@ variables:
   projectRoot: $(System.DefaultWorkingDirectory)
 
   # Python version: 3.7
-  pythonVersion: '3.11.0'
+  #pythonVersion: '3.11.0'
 
 stages:
 - stage: Build
@@ -35,16 +35,16 @@ stages:
     pool: Default
    #   vmImage: $(vmImageName)
     steps:
-    - task: UsePythonVersion@0
-      inputs:
-        versionSpec: '$(pythonVersion)'
-      displayName: 'Use Python $(pythonVersion)'
+    # - task: UsePythonVersion@0
+    #   inputs:
+    #     versionSpec: '$(pythonVersion)'
+    #   displayName: 'Use Python $(pythonVersion)'
 
     - checkout: self
     - script: |
-        python -m venv antenv
+        python3.7 -m venv antenv
         source antenv/bin/activate
-        python -m pip install --upgrade pip
+        python3.7 -m pip install --upgrade pip
         pip install setup
         pwd
         pip install -r C2-AgileDevelopmentwithAzure/azure_pipelines_exercise/starter_files/requirements.txt
