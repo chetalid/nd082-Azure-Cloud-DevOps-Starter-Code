@@ -6,6 +6,8 @@
 trigger:
 - master
 
+pool: default
+
 variables:
   # Azure Resource Manager connection created during pipeline creation
   azureServiceConnectionId: 'ae3f8613-7863-484d-8c84-4aa699994daa'
@@ -14,7 +16,7 @@ variables:
   webAppName: 'python-flask-webapp-test'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  #vmImageName: 'ubuntu-latest'
 
   # Environment name
   environmentName: 'python-flask-webapp-test'
@@ -30,8 +32,8 @@ stages:
   displayName: Build stage
   jobs:
   - job: BuildJob
-    pool:
-      vmImage: $(vmImageName)
+    pool: myAgentPool
+   #   vmImage: $(vmImageName)
     steps:
     - task: UsePythonVersion@0
       inputs:
@@ -68,8 +70,8 @@ stages:
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob
-    pool:
-      vmImage: $(vmImageName)
+    pool: default
+     # vmImage: $(vmImageName)
     environment: $(environmentName)
     strategy:
       runOnce:
